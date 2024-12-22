@@ -1,0 +1,23 @@
+name: Build and Test C++ Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update -y && sudo apt-get install -y g++
+
+      - name: Compile the code
+        run: g++ -o TicTacToe Main.cpp GameBoard.cpp TicTacToe.cpp
+
+      - name: Run the code
+        run: ./TicTacToe
